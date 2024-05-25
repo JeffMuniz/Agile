@@ -1,0 +1,78 @@
+Supplier Data:
+
+	SupplierId										Várias tabelas
+	SupplierProductId           					Product.OriginalProductId
+	SupplierSkuId               					ProductSku.OriginalProductSkuId   		   
+	ProductName  (nome será o mais genérico) 		Product.Name						
+	Esse campo não existe no modelo atual. Será necessário implementar no importador parceiro, 
+	sendo o nome do produto pai, quando existir esse conceito no parceiro. 
+	Será o nome de um SKU quando o conceito não existir no parceiro, e assume-se que esse nome pode mudar, 
+	pois o parceiro não fornece um nome. Deixa de existir tão logo o produto receba o nome no retorno da macnaima.
+
+	Name 											ProductSku.Name (Rediscutir: O sistema é modelado para trabalhar com o Nome fornecido pela macnaima. 
+																	Uma vez que esse nome seja retornado, ele será usado.
+																	Dessa forma, o nome que criamos manualmente é transitório, e deixará de ser usado tão logo o nome retorne da 
+																	macnaima. Isso simplifica a abordagem, e me permite seguir da seguinte forma: O Importador parceiro sempre fornece um nome mais genérico (pai). O processo de inserção gera o nome provisório, criando o nome de sku a partir do nome do produto pai e adicionando as features a esse nome: Tenis Nike Shocks - Branco - 36. 
+	Descrição 										Armazenas em Product.Description e ProductSku.Description (PBI para que o backend use esse dado quando ele existir)
+	imagens (em dif resoluções)  					SkuImage
+	
+	
+	Momento 1 -> Uso apenas para gerar as ProductFeatures. Decido de forma tosca para não deixar o importador parceiro complexo. Especificações seriam os atributos seller com "tecni" no nome. 
+	Momento 2 -> Leio da estrutura corrigida, e as Especificações serão os atributos a nível de sku. Para isso, mudo a implementação do mkp x front para que na PDP os atributos exibidos sejam relacionados ao SKU, e não ao produto pai. A partir daí, exibo em Características Gerais todas as informações do SKU que tem origem no Parceiro (Features 4,5,6). Exibo em Especificações os atributos extraídos, em nível de Sku (Attributes). Caractegísticas -> Seller, Espec -> Atributos
+	
+	Dessa forma, não me preocupo se o atributo é especificação ou característica, nem se é um atributo de produto ou sku, e não trago para os sistemas as complexidades dos parceiros.
+	Features			Proposição: Todas as features vindas do parceiro  -> vai para a ProductFeature (4)(-Voltagem, -Cor, -Tamanho), SkuSupplierFeature (sem restrições)
+	SkuFeature (Apenas Cor, Tamanho, Voltagem)
+	Cat Parceiro		
+	Subcat Parceiro
+	Marca
+	Preço
+
+	SkuFeatures serão geradas a partir dos atributos macnaima
+	
+macnaima Data:
+	SupplierProductId
+	SupplierSkuId
+	SupplierId  
+	Entity
+	Atributos -> SkuFeature (Apenas Cor, Tamanho, Voltagem)
+			  -> SkuAttribute       
+			  -> ProductAttribute, ProductFeature (6) (-Voltagem, -Cor, -Tamanho)
+	category_id -> productSubcategory
+	Subcategory_ids
+	Product Hash
+	Product Name -> Product..Name, se existir
+	Sku Hash
+	Sku Name ->  ProductSku..Name, se existir
+	product_matching_metadata
+	product_name_metadata
+	sku_metadata -> Gera skufeatures, gera skuAttributes
+	sku_name_metadata
+	filters_metadata
+	offer_status
+	status_description
+	blocked_description
+	
+	ProductEnriched
+	Pid,Entity,PHash, PName
+	
+	ProductSkuEnriched
+	SkuId, SkuHash, SkuName
+	
+	
+	
+	------------------------------------------
+	
+	sku1 - Voltagem 110, Potencia 200, resolução 5000
+	sku2 - Voltagem 220, Potencia 220, resolução 5005
+	
+	pai
+		potencia: 220
+		resolução: 5005
+		sku1 - 110
+		sku2 - 220
+	
+	
+	
+	
+	
