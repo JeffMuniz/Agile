@@ -1,0 +1,22 @@
+FROM jdk11-alpine
+RUN apk update && apk add --no-cache curl sudo bash wget
+RUN curl -Ls https://raw.githubusercontent.com/newrelic/newrelic-cli/master/scripts/install.sh \
+ | bash && sudo NEW_RELIC_API_KEY=nra-key NEW_RELIC_ACCOUNT_ID=nra-id /usr/local/bin/newrelic install
+ENV NEW_RELIC_APP_NAME="seg-api-autenticacao"
+ENV JAVA_OPTS="$JAVA_OPTS -Dnewrelic.config.app_name='seg-api-autenticacao'"
+ENV NEW_RELIC_LICENSE_KEY="nra-key"
+ENV JAVA_OPTS="$JAVA_OPTS -Dnewrelic.config.license_key='nra-key'"
+ENV USER=appuser
+ENV UID=16000
+ENV GID=16001
+RUN mkdir -p /app
+COPY --chown=appuser:appuser ./newrelic.yml /app
+RUN mkdir -p app/trace  && \
+    addgroup -g $GID $USER && \
+    adduser --disabled-password --gecos "" --home /app --ingroup $USER --no-create-home --uid $UID $USER && \
+    chown $USER:$USER -R /app 
+WORKDIR /app
+COPY --chown=appuser:appuser ./target/*.jar ./app.jar
+USER appuser
+ENV NEW_RELIC_LOG_FILE_NAME="STDOUT"
+ENTRYPOINT ["java", "-javaagent:newrelic.jar", "-jar", "app.jar"]
