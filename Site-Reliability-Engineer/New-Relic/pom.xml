@@ -93,7 +93,7 @@
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <sonar-maven-plugin.version>3.7.0.1746</sonar-maven-plugin.version>
         <jackson.version>2.10.0</jackson.version>
-        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger2.version>2.10.0</springfox-swagger2.version>
         <HikariCP.version>3.3.0</HikariCP.version>
         <commons-io.version>2.7</commons-io.version>
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
