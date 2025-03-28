@@ -5,7 +5,7 @@
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@styled-icons/icomoon": "^10.34.0",
-    "axios": "^1.6.8",
+    "axios": "^1.8.2",
     "clone": "2.1.2",
     "cpf-cnpj-validator": "^1.0.3",
     "element-is-visible": "^1.0.0",
