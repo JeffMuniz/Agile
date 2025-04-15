@@ -1,0 +1,45 @@
+replicaCount: 1
+
+image:
+  repository: wrike/callisto
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 4444
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+callisto:
+  sessionTimeout: 600
+  maxConcurrentSessions: 10
+  logLevel: info
+
+browsers:
+  chrome:
+    image: selenoid/vnc:chrome_117.0
+    port: 4444
+    env:
+      - name: ENABLE_VNC
+        value: "true"
+  firefox:
+    image: selenoid/vnc:firefox_116.0
+    port: 4444
+    env:
+      - name: ENABLE_VNC
+        value: "true"
+
+nginx:
+  enabled: true
+  replicaCount: 1
