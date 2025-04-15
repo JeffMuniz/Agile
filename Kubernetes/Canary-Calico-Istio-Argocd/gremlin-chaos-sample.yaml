@@ -1,0 +1,15 @@
+apiVersion: gremlin.com/v1
+kind: Attack
+metadata:
+  name: cpu-stress-my-app-v2
+spec:
+  target:
+    type: pod
+    labels:
+      app: my-app
+      version: v2
+  command:
+    type: cpu
+    args:
+      cores: 2
+      length: 60
