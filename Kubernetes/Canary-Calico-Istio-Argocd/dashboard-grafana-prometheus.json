@@ -1,0 +1,19 @@
+{
+  "title": "Canary Traffic Split",
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Traffic Distribution v1 vs v2",
+      "targets": [
+        {
+          "expr": "istio_requests_total{destination_service=\"my-app.default.svc.cluster.local\", destination_version=\"v1\"}",
+          "legendFormat": "v1"
+        },
+        {
+          "expr": "istio_requests_total{destination_service=\"my-app.default.svc.cluster.local\", destination_version=\"v2\"}",
+          "legendFormat": "v2"
+        }
+      ]
+    }
+  ]
+}

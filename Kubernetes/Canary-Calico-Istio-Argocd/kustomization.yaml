@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - deployment-v2.yaml
+  - destination-rule.yaml
+  - virtual-service.yaml
+  - application-argocd.yaml
+
+configMapGenerator:
+  - name: grafana-dashboard
+    files:
+      - dashboard-grafana-prometheus.json
