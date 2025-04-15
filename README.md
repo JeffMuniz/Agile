@@ -1,4 +1,4 @@
-# Deploy com Estratégia Blue-Green + Canary com Istio e ArgoCD
+# Deploy com Estratégia Blue-Green + Canary com Istio e ArgoCD  na pasta Canary-Calico-Istio-Argocd
 
 ## Objetivo
 
