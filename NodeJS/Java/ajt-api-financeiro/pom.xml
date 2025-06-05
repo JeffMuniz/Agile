@@ -104,7 +104,7 @@
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <junit-platform-runner.version>1.6.0</junit-platform-runner.version>
         <commons-lang3.version>3.11</commons-lang3.version>
-        <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
+        <hibernate-validator.version>6.2.0.Final</hibernate-validator.version>
         <janino.version>3.1.2</janino.version>
         <lombok.version>1.18.16</lombok.version>
         <commons-codec.version>1.14</commons-codec.version>
