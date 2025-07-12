@@ -103,7 +103,7 @@
         <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
         <junit-platform-runner.version>1.6.0</junit-platform-runner.version>
-        <commons-lang3.version>3.11</commons-lang3.version>
+        <commons-lang3.version>3.18.0</commons-lang3.version>
         <hibernate-validator.version>6.1.7.Final</hibernate-validator.version>
         <janino.version>3.1.2</janino.version>
         <lombok.version>1.18.16</lombok.version>
