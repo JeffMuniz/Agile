@@ -99,7 +99,7 @@
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
         <junit-jupiter-engine.version>5.3.2</junit-jupiter-engine.version>
         <junit-vintage-engine.version>5.3.2</junit-vintage-engine.version>
-        <assertj-core.version>3.11.1</assertj-core.version>
+        <assertj-core.version>3.27.7</assertj-core.version>
         <sentry-logback.version>1.7.29</sentry-logback.version>
         <spring-cloud-starter.version>2.1.4.RELEASE</spring-cloud-starter.version>
         <cucumber-junit.version>4.8.0</cucumber-junit.version>
